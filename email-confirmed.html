@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>Email confirmed | Bartind'r</title>
+
+    <meta
+      name="description"
+      content="Your Bartind'r email address has been confirmed successfully."
+    />
+
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at top, rgba(78, 203, 177, 0.18), transparent 36%),
+          #101414;
+        color: #ffffff;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 520px;
+        padding: 40px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        background: rgba(24, 30, 30, 0.94);
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .icon {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(78, 203, 177, 0.16);
+        font-size: 36px;
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(28px, 6vw, 38px);
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .actions {
+        margin-top: 30px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 14px;
+        background: #4ecbb1;
+        color: #08110f;
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .button-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: transparent;
+        color: #ffffff;
+      }
+
+      .status {
+        margin-top: 22px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <div class="icon" aria-hidden="true">✓</div>
+
+      <h1>Email confirmed</h1>
+
+      <p>
+        Your email address has been confirmed successfully. Open Bartind'r to
+        continue.
+      </p>
+
+      <div class="actions">
+        <a id="open-app-button" class="button" href="bartindr://email-confirmed">
+          Open Bartind'r
+        </a>
+
+        <a class="button button-secondary" href="./">
+          Return to the Bartind'r website
+        </a>
+      </div>
+
+      <div id="status" class="status">
+        Attempting to open the app…
+      </div>
+    </main>
+
+    <script>
+      const appUrl = "bartindr://email-confirmed";
+      const statusElement = document.getElementById("status");
+      const openAppButton = document.getElementById("open-app-button");
+
+      function openBartindr() {
+        statusElement.textContent = "Attempting to open Bartind'r…";
+        window.location.href = appUrl;
+
+        window.setTimeout(() => {
+          statusElement.textContent =
+            "If the app did not open, tap “Open Bartind'r” or open it manually.";
+        }, 1800);
+      }
+
+      openAppButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        openBartindr();
+      });
+
+      window.setTimeout(openBartindr, 500);
+    </script>
+  </body>
+</html>
