@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>Leave a reference | Bartind'r</title>
+
+    <meta
+      name="description"
+      content="Open Bartind'r to leave a professional reference."
+    />
+
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(78, 203, 177, 0.18),
+            transparent 36%
+          ),
+          #101414;
+        color: #ffffff;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 520px;
+        padding: 40px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        background: rgba(24, 30, 30, 0.94);
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .icon {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(78, 203, 177, 0.16);
+        font-size: 38px;
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(28px, 6vw, 38px);
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .actions {
+        margin-top: 30px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 14px;
+        background: #4ecbb1;
+        color: #08110f;
+        font: inherit;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .button-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: transparent;
+        color: #ffffff;
+      }
+
+      .button-disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      .status {
+        min-height: 22px;
+        margin-top: 22px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .status-error {
+        color: #ffb4ab;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <div class="icon" aria-hidden="true">⭐</div>
+
+      <h1>Leave a reference</h1>
+
+      <p>
+        Open Bartind'r to submit a professional reference using this secure,
+        one-time link.
+      </p>
+
+      <div class="actions">
+        <a id="open-app-button" class="button" href="#">
+          Open Bartind'r
+        </a>
+
+        <span class="button button-secondary button-disabled">
+          Google Play — coming soon
+        </span>
+
+        <a class="button button-secondary" href="./">
+          Return to the Bartind'r website
+        </a>
+      </div>
+
+      <div id="status" class="status">
+        Preparing your reference link…
+      </div>
+    </main>
+
+    <script>
+      const statusElement = document.getElementById("status");
+      const openAppButton = document.getElementById("open-app-button");
+
+      let appLaunchAttempted = false;
+
+      function getToken() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("token");
+      }
+
+      function buildAppUrl() {
+        const token = getToken();
+
+        if (!token) {
+          return null;
+        }
+
+        return `bartender-match://reference/${encodeURIComponent(token)}`;
+      }
+
+      function openBartindr() {
+        if (appLaunchAttempted) {
+          return;
+        }
+
+        const appUrl = buildAppUrl();
+
+        if (!appUrl) {
+          statusElement.classList.add("status-error");
+          statusElement.textContent =
+            "This reference link is incomplete or invalid.";
+          return;
+        }
+
+        appLaunchAttempted = true;
+
+        statusElement.classList.remove("status-error");
+        statusElement.textContent = "Attempting to open Bartind'r…";
+
+        window.location.href = appUrl;
+
+        window.setTimeout(() => {
+          appLaunchAttempted = false;
+          statusElement.textContent =
+            "If the app did not open, tap “Open Bartind'r”.";
+        }, 1800);
+      }
+
+      openAppButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        openBartindr();
+      });
+
+      window.setTimeout(openBartindr, 500);
+    </script>
+  </body>
+</html>
