@@ -17,7 +17,10 @@
         <a class="brand" href="/home"
           ><img src="logo.png" alt="Bartind'r logo" /><span>Bartind'r</span></a
         >
-        <nav class="nav-links">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="site-nav">
           <a href="/home">Home</a><a href="privacy.html">Privacy</a
           ><a href="terms.html">Terms</a><a href="community.html">Guidelines</a
           ><a href="delete-account.html">Delete account</a>
@@ -92,6 +95,78 @@
           </div>
         </div>
       </section>
+      <section class="demo" aria-labelledby="demo-title">
+        <div class="container">
+          <div class="demo-head">
+            <p class="eyebrow">See it in action</p>
+            <h2 id="demo-title">Swipe. Match. Pour.</h2>
+            <p class="lead">
+              A bar looking for talent, a bartender looking for the right place.
+              When both swipe right, it's a match and the conversation starts.
+            </p>
+          </div>
+          <!-- Cards, avatars and confetti are filled in by demo.js -->
+          <div class="demo-stage">
+            <div class="demo-side" data-side="bar">
+              <div class="persona">
+                <div class="persona-avatar" data-art="aurora"></div>
+                <div class="persona-text">
+                  <strong>Bar Aurora</strong>
+                  <span class="persona-status"
+                    ><span class="s-swipe">Looking for a bartender</span
+                    ><span class="s-match">It's a match!</span></span
+                  >
+                </div>
+              </div>
+              <div class="phone">
+                <div class="phone-screen">
+                  <div class="phone-top"><img src="logo.png" alt="" /><span>Bartind'r</span></div>
+                  <div class="demo-stack"></div>
+                  <div class="demo-actions">
+                    <span class="btn-nope">✕</span><span class="btn-like">♥</span>
+                  </div>
+                  <div class="demo-match"></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cheers" aria-hidden="true">
+              <div class="cheers-badge">
+                <svg viewBox="0 0 64 64">
+                  <g fill="none" stroke="#1f1f1f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <g transform="rotate(15 17 38)"><path d="M6 20h22L17 35z" fill="#f6f2eb" /><path d="M9.5 24h15" stroke="#d4a017" stroke-width="3" /><path d="M17 35v13M11 49h12" /></g>
+                    <g transform="rotate(-15 47 38)"><path d="M36 20h22L47 35z" fill="#f6f2eb" /><path d="M39.5 24h15" stroke="#d4a017" stroke-width="3" /><path d="M47 35v13M41 49h12" /></g>
+                  </g>
+                  <path class="cheers-spark" d="M32 3v7M23 6l3.5 5.5M41 6l-3.5 5.5" stroke="#d4a017" stroke-width="2.6" stroke-linecap="round" />
+                </svg>
+              </div>
+              <span class="cheers-label">Match!</span>
+              <div class="confetti"></div>
+            </div>
+            <div class="demo-side" data-side="bartender">
+              <div class="persona">
+                <div class="persona-avatar" data-art="luca"></div>
+                <div class="persona-text">
+                  <strong>Luca</strong>
+                  <span class="persona-status"
+                    ><span class="s-swipe">Looking for a bar</span
+                    ><span class="s-match">It's a match!</span></span
+                  >
+                </div>
+              </div>
+              <div class="phone">
+                <div class="phone-screen">
+                  <div class="phone-top"><img src="logo.png" alt="" /><span>Bartind'r</span></div>
+                  <div class="demo-stack"></div>
+                  <div class="demo-actions">
+                    <span class="btn-nope">✕</span><span class="btn-like">♥</span>
+                  </div>
+                  <div class="demo-match"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="section alt">
         <div class="container">
           <p class="eyebrow">How it works</p>
@@ -130,5 +205,7 @@
       </div>
     </footer>
     <script src="bg.js" defer></script>
+    <script src="nav.js" defer></script>
+    <script src="demo.js" defer></script>
   </body>
 </html>
