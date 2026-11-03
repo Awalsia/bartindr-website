@@ -30,7 +30,7 @@
     <main class="legal-wrap">
       <p class="eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 2 October 2026</p>
+      <p class="meta">Effective 3 November 2026</p>
       <div class="notice">
         This policy explains how Bartind'r processes information when you use
         the mobile app and website.
@@ -83,6 +83,17 @@
         <strong>Profile → Account → Delete account</strong>, or use the
         <a href="delete-account.html">web deletion page</a>.
       </p>
+      <h2 id="face-data">8.1 Images showing faces — no facial recognition</h2>
+      <p>Bartind'r may collect profile and chat photos or videos showing faces, and an optional identity-document photo and a current selfie for identity verification. Bartind'r does not use facial recognition or create biometric templates, facial geometry maps or facial identifiers. These images are not used by Bartind'r for advertising profiling or biometric model training.</p>
+      <h2 id="identity-review">8.2 Optional manual identity verification</h2>
+      <p>If you request the Verified badge, an authorised administrator manually compares your selfie with your identity document. We do not perform an automated facial comparison. Identity-document images and verification selfies are not public, are not shown to other users and are not sent to OpenAI by the identity-verification workflow. Review notifications contain request details rather than copies of the images.</p>
+      <h2 id="face-storage-sharing">8.3 Storage, access and providers</h2>
+      <p>Images are stored through Supabase. Our production project is in the eu-west-1 region (Ireland). Identity documents and verification selfies are in a private Storage bucket. Authorised administrators access them through temporary signed links. Profile and chat images follow the visibility rules in section 6.</p>
+      <p>With separate explicit permission, profile and chat images may be submitted to OpenAI's Moderation API to screen for prohibited content, not to identify people. Identity-verification documents and selfies are excluded from that workflow. Declining or withdrawing permission selects manual moderation for future processing. OpenAI's processing and retention rules are described in its <a href="https://developers.openai.com/api/docs/guides/your-data">API data controls documentation</a>.</p>
+      <h2 id="face-retention">8.4 Image retention and deletion</h2>
+      <p>Identity-document images and verification selfies are retained while the verification request is pending and are automatically deleted from active Storage after 7 days from approval or rejection. The cleanup job checks for expired files every 15 minutes. The verification result, timestamps and Verified badge may remain while the account is active; these records do not contain the deleted images or a biometric template.</p>
+      <p>Deleting a profile photo or video through Manage media requests removal of that file from active Storage. Hiding a chat or removing a match does not delete its attachments. Chat attachments remain associated with the conversation until removed by moderation or deletion of the owning account. Account deletion also removes any remaining identity-verification files associated with that account. A report or moderation record may retain text, decisions and references to content; it does not preserve a separate copy of a file removed from Storage.</p>
+      <p>Bartind'r does not maintain separate backups of identity-document images or verification selfies. Supabase database backups contain database records and file metadata, not the Storage files themselves; restoring such a database backup does not restore a deleted image. Provider processing and any applicable retention exceptions follow the providers' published terms. This is distinct from the active-Storage deletion periods described above.</p>
       <h2>9. Rights</h2>
       <p>
         Depending on your location, you may request access, correction,
